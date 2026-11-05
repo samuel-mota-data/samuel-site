@@ -3,3 +3,4 @@ node_modules/
 _vps-backup-*/
 _deploy/
 *.tsbuildinfo
+deploy.sh
