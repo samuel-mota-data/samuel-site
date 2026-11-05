@@ -168,6 +168,14 @@ export default function LabApp() {
             Gêmeo digital de um split de 18.000 BTU, calibrado com medições reais de laboratório. Injete falhas e veja a assinatura
             elétrica, a proteção do compressor e o diagnóstico com o mínimo de sensores.
           </p>
+          <div className="mt-5 flex flex-wrap gap-3 font-mono text-xs">
+            <a href="https://github.com/samuel-mota-data/hvac-fdd-lab" target="_blank" rel="noopener noreferrer" className="px-3 py-2 rounded-lg border border-white/15 text-white/80 hover:border-signal hover:text-signal transition-colors">
+              Análise dos dados reais (Python) ↗
+            </a>
+            <a href="https://github.com/samuel-mota-data/samuel-site/tree/main/src/lib/hvac" target="_blank" rel="noopener noreferrer" className="px-3 py-2 rounded-lg border border-white/15 text-white/80 hover:border-signal hover:text-signal transition-colors">
+              Código do gêmeo digital ↗
+            </a>
+          </div>
         </header>
 
         {/* Simulador */}
