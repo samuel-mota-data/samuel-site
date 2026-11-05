@@ -385,7 +385,7 @@ export default function ColdRoomApp() {
           <Timeline findings={findings} days={days} onPick={goDay} />
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-4xl">
             {[
-              ['Alarmes do controlador', `${new Set(run.alarms.map(a => a.code)).size} tipos · ${run.alarms.length} episódios`, run.alarms.length ? RED : GREEN],
+              ['Alarmes do controlador', `${new Set(run.alarms.map(a => a.code)).size} tipo(s) · ${run.alarms.length} episódio(s)`, run.alarms.length ? RED : GREEN],
               ['Primeiro alerta preditivo', firstAlerts.length ? `dia ${Math.min(...firstAlerts.map(f => f.alertDay!))}` : '—', GREEN],
               ['Energia a mais que o gêmeo', `${(kwhRun - kwhTwin).toFixed(0)} kWh`, kwhRun - kwhTwin > 20 ? RED : YELLOW],
               ['Custo da falha no período', `R$ ${Math.max(0, (kwhRun - kwhTwin) * econ.tariff).toFixed(0)}`, YELLOW],
@@ -470,13 +470,24 @@ export default function ColdRoomApp() {
                   </div>
                 ))}
               </div>
-              <div className="rounded-lg border border-green-400/30 bg-green-400/5 px-4 py-3">
-                <p className="text-[11px] text-green-300/80">Economia por evaporador</p>
-                <p className="font-mono text-2xl text-green-300">
-                  {(100 * (timeRun - demRun) / timeRun).toFixed(1)} % · R$ {Math.max(0, month(timeRun - demRun) * econ.tariff).toFixed(0)}/mês
-                </p>
-                <p className="text-xs text-white/50 mt-1">× 20 evaporadores ≈ R$ {Math.max(0, month(timeRun - demRun) * econ.tariff * 20).toFixed(0)}/mês. Mais em dia seco e com pouca porta.</p>
-              </div>
+              {timeRun - demRun >= 0 ? (
+                <div className="rounded-lg border border-green-400/30 bg-green-400/5 px-4 py-3">
+                  <p className="text-[11px] text-green-300/80">Economia por evaporador</p>
+                  <p className="font-mono text-2xl text-green-300">
+                    {(100 * (timeRun - demRun) / timeRun).toFixed(1)} % · R$ {(month(timeRun - demRun) * econ.tariff).toFixed(0)}/mês
+                  </p>
+                  <p className="text-xs text-white/50 mt-1">× 20 evaporadores ≈ R$ {(month(timeRun - demRun) * econ.tariff * 20).toFixed(0)}/mês. Mais em dia seco e com pouca porta.</p>
+                </div>
+              ) : (
+                <div className="rounded-lg border border-red-400/30 bg-red-400/5 px-4 py-3">
+                  <p className="text-[11px] text-red-300/80">Degelo por demanda gastou mais</p>
+                  <p className="font-mono text-2xl text-red-300">+{(100 * (demRun - timeRun) / timeRun).toFixed(1)} %</p>
+                  <p className="text-xs text-white/50 mt-1">
+                    Com falha no ciclo (vazamento, válvula), a serpentina fica fria por falta de gás e o sensor de gelo dispara degelos à toa.
+                    Degelo por demanda só funciona junto com o diagnóstico.
+                  </p>
+                </div>
+              )}
             </div>
 
             <div className="rounded-xl border border-white/10 bg-panel p-5 space-y-4">
