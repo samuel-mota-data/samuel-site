@@ -57,8 +57,9 @@ export default function Scope({
     y1 += m
   }
   const [x0, x1] = xRange
-  const sx = (x: number) => PAD.l + ((x - x0) / (x1 - x0)) * (W - PAD.l - PAD.r)
-  const sy = (y: number) => PAD.t + (1 - (y - y0) / (y1 - y0)) * (H - PAD.t - PAD.b)
+  const r1 = (n: number) => Math.round(n * 10) / 10 // evita diferença servidor/cliente na hidratação
+  const sx = (x: number) => r1(PAD.l + ((x - x0) / (x1 - x0)) * (W - PAD.l - PAD.r))
+  const sy = (y: number) => r1(PAD.t + (1 - (y - y0) / (y1 - y0)) * (H - PAD.t - PAD.b))
 
   const path = (s: Series) => {
     let d = ''

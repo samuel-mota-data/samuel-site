@@ -1,10 +1,16 @@
 'use client'
 import { useMemo, useState } from 'react'
+import dynamic from 'next/dynamic'
 import { NOMINAL, P, prognosis, simulate, spectrum, waveform, type Inputs } from '@/lib/hvac/model'
 import { diagnose } from '@/lib/hvac/diagnose'
 import { UFPB } from '@/lib/hvac/ufpb'
 import BlockDiagram from './BlockDiagram'
 import Scope from './Scope'
+
+const SplitScene = dynamic(() => import('./SplitScene'), {
+  ssr: false,
+  loading: () => <div className="rounded-xl border border-white/10 bg-panel aspect-[4/3] sm:aspect-[16/9]" />,
+})
 
 const YELLOW = '#f7e921'
 const CYAN = '#22d3ee'
@@ -87,7 +93,7 @@ function Meter({ label, value, limit, unit, invert = false, min = 0 }: { label: 
 function ValidationChart() {
   const rows = UFPB.map(c => ({ ...c, model: simulate({ ...NOMINAL, ...c.x }).irms / simulate(NOMINAL).irms - 1 }))
   const W = 640, rowH = 34, L = 170, max = 0.45
-  const sx = (v: number) => L + ((v + 0.05) / (max + 0.05)) * (W - L - 20)
+  const sx = (v: number) => Math.round((L + ((v + 0.05) / (max + 0.05)) * (W - L - 20)) * 10) / 10
   const H = rows.length * rowH + 30
   return (
     <div className="rounded-xl border border-white/10 bg-black overflow-x-auto">
@@ -104,8 +110,8 @@ function ValidationChart() {
             <g key={r.id}>
               <text x={L - 10} y={y + 11} fill={r.use === 'fit' ? '#e5e7eb' : '#9ca3af'} fontSize="11" textAnchor="end">{r.name}</text>
               <text x={L - 10} y={y + 24} fill="#6b7280" fontSize="9" textAnchor="end" fontFamily="monospace">{r.use === 'fit' ? 'calibração' : 'validação'}</text>
-              <rect x={Math.min(sx(0), sx(r.dI))} y={y} width={Math.abs(sx(r.dI) - sx(0))} height={10} fill="#9ca3af" />
-              <rect x={Math.min(sx(0), sx(r.model))} y={y + 13} width={Math.abs(sx(r.model) - sx(0))} height={10} fill={YELLOW} />
+              <rect x={Math.min(sx(0), sx(r.dI))} y={y} width={Math.round(Math.abs(sx(r.dI) - sx(0)) * 10) / 10} height={10} fill="#9ca3af" />
+              <rect x={Math.min(sx(0), sx(r.model))} y={y + 13} width={Math.round(Math.abs(sx(r.model) - sx(0)) * 10) / 10} height={10} fill={YELLOW} />
             </g>
           )
         })}
@@ -154,7 +160,7 @@ export default function LabApp() {
           <a href="/" className="font-display font-bold tracking-tight text-lg">
             Samuel Mota<span className="text-signal">.</span>
           </a>
-          <span className="font-mono text-xs text-white/50">/lab · gêmeo digital</span>
+          <a href="/lab" className="font-mono text-xs text-white/50 hover:text-signal transition-colors">← /lab · split</a>
         </div>
       </nav>
 
@@ -216,6 +222,7 @@ export default function LabApp() {
           </aside>
 
           <div className="space-y-4 min-w-0">
+            <SplitScene x={x} s={s} />
             <BlockDiagram x={x} s={s} diag={`${diag.label} · resíduo ${(diag.resid * 100).toFixed(1)}%`} />
             <div className="grid xl:grid-cols-2 gap-4">
               <Scope
