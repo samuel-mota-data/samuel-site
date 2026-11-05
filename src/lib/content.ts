@@ -1,0 +1,321 @@
+// Conteúdo do site em PT e EN.
+// Regra: nada de marca, nome de produto, cliente, fabricante ou tela real de empregador/cliente.
+// O caso principal é descrito pelas competências, e as visualizações são recriações.
+
+export type Lang = 'pt' | 'en'
+
+export const content = {
+  pt: {
+    nav: { case: 'Caso', twin: 'Gêmeo digital', cv: 'Experiência', skills: 'Competências', contact: 'Contato' },
+    hero: {
+      kicker: 'IoT Engineer · Smart City · Digital Twin',
+      title: ['Do sensor no campo', 'ao gêmeo digital.'],
+      lead: 'Projeto e construo sistemas IoT de ponta a ponta: escolha de rede, protocolo e dispositivo, integração de fabricantes, plataforma, alertas e a visualização que vira decisão.',
+      path: ['elétrica', 'firmware', 'redes', 'dados', 'plataforma', 'produto'],
+      ctaCase: 'Ver o caso',
+      ctaContact: 'Falar comigo',
+      hudTitle: 'twin · condomínio',
+      hudSim: 'simulação',
+      hudUnits: 'unidades',
+      hudLive: 'ao vivo',
+      hudHint: 'arraste para girar',
+    },
+    summary: {
+      title: 'Em uma frase',
+      text: '12 anos indo do painel elétrico ao produto: técnico em elétrica, desenvolvedor de IoT industrial, fundador de empresa de dados e IA e hoje especialista de produto IoT para cidades inteligentes.',
+      facts: [
+        ['12+', 'anos de campo e engenharia'],
+        ['E2E', 'dispositivo → rede → plataforma → decisão'],
+        ['8', 'famílias de sensores integradas num único canal'],
+        ['MIT', 'Data Science & Machine Learning'],
+      ],
+    },
+    case: {
+      kicker: 'Caso principal',
+      title: 'Plataforma IoT multi-tenant, do zero',
+      lead: 'Concebi, arquitetei e construí sozinho uma plataforma que recebe telemetria de vários fabricantes por um único canal, padroniza tudo e entrega mapa, gráficos, alertas e gêmeo digital para diferentes clientes sobre o mesmo back-end.',
+      confidential: 'Projeto corporativo. Marcas, clientes, dados e telas reais foram omitidos por confidencialidade. As visualizações desta página são recriações.',
+      roleTitle: 'O que eu fiz',
+      role: [
+        ['Pesquisa de conectividade', 'Comparei LoRaWAN, NB-IoT, LTE Cat 1 bis, 4G e Wi-Fi por consumo, cobertura e custo, e defini por onde vai HTTP e por onde vai MQTT.'],
+        ['Arquitetura e API', 'Back-end em Django + DRF com API REST, autenticação por sessão e por chave de integração, papéis e escopo por cliente.'],
+        ['Adaptadores e decodificadores', 'Um conector por fabricante em Python: JSON, HEX e SenML viram métricas padronizadas, com unidade e escala configuráveis sem deploy.'],
+        ['Brokers e bridges', 'Mosquitto próprio, bridges TLS para brokers de parceiros, polling HTTP de APIs externas e push HTTP em lote.'],
+        ['Provisionamento', 'Cadastro de dispositivo com credencial MQTT individual e comandos AT prontos para configurar o hardware em campo.'],
+        ['Alertas multicanal', 'Limites por tipo e por dispositivo, detecção de offline e cooldown. WhatsApp e e-mail em produção, com camada de canais desacoplada para SMS e push no app — e nada disso trava a ingestão.'],
+        ['Multi-tenant com front personalizado', 'Mesmo back-end, front-ends diferentes: mapa para cidade, visão 3D e rateio de água para condomínio, widgets para o app do cliente.'],
+        ['Operação', 'Docker Compose, proxy reverso, túnel sem portas abertas, retenção automática de dados e câmeras RTSP ao vivo ao lado dos sensores.'],
+      ],
+      archTitle: 'Um canal, vários fabricantes',
+      archLead: 'Passe o mouse num fabricante para ver o caminho do dado.',
+      arch: {
+        vendors: ['Fabricante A', 'Fabricante B', 'Fabricante C', 'Fabricante D'],
+        vendorDetail: ['nível, água, gás · NB-IoT', 'estação climática · SenML', 'ar, ruído, rios · LoRaWAN', 'iluminação · LTE Cat 1 bis'],
+        transport: ['MQTT direto', 'bridge TLS', 'gateway → polling HTTP', 'nuvem do fabricante'],
+        core: 'Canal único',
+        coreDetail: 'conectores · padronização · histórico',
+        outputs: ['Mapa da cidade', 'Gêmeo digital', 'Alertas', 'API / app'],
+        outputDetail: ['tempo real, por cliente', '3D do prédio', 'WhatsApp · e-mail · SMS · push', 'REST · widgets no app'],
+      },
+      decisionsTitle: 'Decisões de engenharia',
+      decisions: [
+        ['Calibração que respeita o campo', 'O técnico mede a profundidade real uma vez; a partir daí cada leitura de distância vira a cota do rio em metros, sem teto artificial.'],
+        ['Notificação nunca trava a ingestão', 'Fila de mensagens, threads de escrita e uma fila separada para alertas: WhatsApp lento não atrasa o próximo sensor.'],
+        ['Só leitura nova dispara alerta', 'Pacotes chegam com histórico embutido e às vezes repetidos. A gravação é idempotente e só o inédito segue para os alertas.'],
+        ['Dispositivo que se classifica', 'Pelas métricas que envia, o sensor ganha tipo, ícone, faixas e regras — família nova sem deploy.'],
+        ['Segurança e LGPD no modelo', 'TLS, credencial por dispositivo, MFA, dados pessoais cifrados, auditoria imutável e retenção automática.'],
+        ['Tempo real sem polling', 'Mapa e 3D atualizam por eventos do servidor; workers assíncronos sustentam conexões longas e vídeo.'],
+      ],
+      usesTitle: 'Casos de cidade inteligente',
+      uses: [
+        ['Enchente', 'nível de rio em metros, alerta por cota'],
+        ['Água', 'hidrômetro por apartamento, rateio, vazamento'],
+        ['Gás', 'leitura do mostrador por câmera'],
+        ['Clima', 'chuva, vento, pressão — antecipa cheias'],
+        ['Cadeia fria', 'vacinas entre 2 °C e 8 °C'],
+        ['Qualidade do ar', 'monóxido de carbono do tráfego'],
+        ['Ruído', 'dB contra o limite da NBR 10151'],
+        ['Iluminação', 'telegestão de luminárias via LTE'],
+      ],
+      stackTitle: 'Stack',
+    },
+    twin: {
+      kicker: 'Gêmeo digital',
+      title: 'O condomínio em 3D, da leitura à fatura',
+      text: 'Para condomínios o mesmo back-end ganhou outro front-end: as torres em 3D, um ponto por unidade colorido pela recência da última leitura — o começo de um gêmeo digital do prédio. Em volta dele, a operação inteira do condomínio passou a rodar sobre os dados dos sensores.',
+      legend: [['ok', 'leitura recente'], ['warn', 'consumo alto'], ['alert', 'possível vazamento'], ['off', 'sem dado']],
+      pointsTitle: 'Da medição à fatura',
+      points: [
+        ['Medição', 'Um medidor de pulsos atende três unidades; gás lido por câmera no mostrador.'],
+        ['Vazamento', 'Consumo contínuo de madrugada vira alerta antes da conta chegar.'],
+        ['Rateio', 'Despesas comuns, gás e energia divididos por unidade ou por m².'],
+        ['Contratos', 'Aluguéis com aviso automático de reajuste e de vencimento.'],
+        ['Comunicação', 'Avisos aos moradores por WhatsApp e e-mail, importação de moradores em lote.'],
+        ['Fatura', 'Aluguel + água por unidade numa fatura mensal em PDF.'],
+      ] as [string, string][],
+    },
+    cv: {
+      title: 'Experiência',
+      jobs: [
+        {
+          org: 'Unifique',
+          role: 'Especialista de Produto IoT',
+          period: 'dez 2025 — hoje',
+          bullets: [
+            'Concebi e construí do zero a plataforma IoT multi-tenant descrita acima.',
+            'Portfólio de dispositivos para cidade, condomínio e varejo: pesquisa, homologação e integração de fabricantes.',
+            'Projetos de cidade inteligente: enchente, clima, qualidade do ar, ruído, água e iluminação.',
+          ],
+        },
+        {
+          org: 'Integrai',
+          role: 'Fundador · ML & Agentes de IA',
+          period: 'mai 2023 — dez 2025',
+          bullets: [
+            'Pipelines de dados, modelos e agentes de IA para dezenas de clientes.',
+            'Automação de processos com n8n e integrações por API.',
+          ],
+        },
+        {
+          org: 'fuse IoT',
+          role: 'Desenvolvedor de Software · IoT industrial',
+          period: 'mar 2024 — jul 2025',
+          bullets: [
+            'Plataforma de monitoramento industrial em produção: ESP32, Node-RED, MQTT e ThingsBoard.',
+            'Firmware, dashboards e alarmes para equipamentos de chão de fábrica.',
+          ],
+        },
+        {
+          org: 'Marinha do Brasil',
+          role: 'Técnico em Elétrica',
+          period: '2014 — 2024',
+          bullets: [
+            'Manutenção de painéis e motores no Arsenal de Marinha.',
+            'A base de tudo: entender como o equipamento falha antes de pedir dado a ele.',
+          ],
+        },
+      ],
+    },
+    skills: {
+      title: 'Competências por camada',
+      groups: [
+        ['Dispositivos', ['ESP32 / C++', 'Sensores industriais', 'RS-485, 4–20 mA, pulsos', 'Comandos AT', 'Eletrotécnica']],
+        ['Redes', ['LoRaWAN', 'NB-IoT', 'NTN', 'LTE Cat 1 bis / 4G (5G)', 'MQTT (tópicos, QoS, TLS)', 'HTTP / REST']],
+        ['Integração', ['Python', 'Decodificadores JSON / HEX / SenML', 'Bridges entre brokers', 'Node-RED', 'n8n']],
+        ['Plataforma', ['Django + DRF', 'PostgreSQL + PgBouncer', 'Angular / React / Next.js', 'ECharts, Leaflet, three.js', 'ThingsBoard']],
+        ['Operação', ['Docker / Compose', 'Linux', 'Proxy reverso e TLS', 'Câmeras RTSP', 'LGPD e segurança']],
+        ['Dados & IA', ['Data science', 'Machine learning', 'Visão computacional (YOLO)', 'RAG e agentes', 'Desenvolvimento assistido por IA']],
+      ] as [string, string[]][],
+    },
+    education: {
+      title: 'Formação',
+      items: ['MIT — Data Science & Machine Learning', 'DataTech Florida — AI in Action Bootcamp', 'Fundamentos de IoT · Gestão Ágil 2.0', 'Técnico em Eletrotécnica (ETEJK)'],
+      langTitle: 'Idiomas',
+      langs: ['Português — nativo', 'Inglês — avançado'],
+    },
+    contact: {
+      title: 'Vamos conversar',
+      text: 'Arquitetura IoT, cidade inteligente, integração de dispositivos ou gêmeo digital — me chama.',
+    },
+    footer: 'Visualizações são recriações ilustrativas. Nenhum dado real de cliente é exibido.',
+  },
+
+  en: {
+    nav: { case: 'Case', twin: 'Digital twin', cv: 'Experience', skills: 'Skills', contact: 'Contact' },
+    hero: {
+      kicker: 'IoT Engineer · Smart City · Digital Twin',
+      title: ['From the sensor in the field', 'to the digital twin.'],
+      lead: 'I design and build end-to-end IoT systems: network, protocol and device choices, vendor integration, platform, alerting and the visualization that turns data into decisions.',
+      path: ['electrical', 'firmware', 'networks', 'data', 'platform', 'product'],
+      ctaCase: 'See the case',
+      ctaContact: 'Get in touch',
+      hudTitle: 'twin · residential',
+      hudSim: 'simulation',
+      hudUnits: 'units',
+      hudLive: 'live',
+      hudHint: 'drag to rotate',
+    },
+    summary: {
+      title: 'In one sentence',
+      text: '12 years from the electrical panel to the product: electrical technician, industrial IoT developer, founder of a data & AI company and now IoT product specialist for smart cities.',
+      facts: [
+        ['12+', 'years of field work and engineering'],
+        ['E2E', 'device → network → platform → decision'],
+        ['8', 'sensor families through a single channel'],
+        ['MIT', 'Data Science & Machine Learning'],
+      ],
+    },
+    case: {
+      kicker: 'Main case',
+      title: 'Multi-tenant IoT platform, from scratch',
+      lead: 'I conceived, architected and built, on my own, a platform that ingests telemetry from several vendors through a single channel, normalizes it and serves maps, charts, alerts and a digital twin to different customers on the same back-end.',
+      confidential: 'Corporate project. Brands, customers, data and real screens are omitted for confidentiality. Visuals on this page are recreations.',
+      roleTitle: 'What I did',
+      role: [
+        ['Connectivity research', 'Compared LoRaWAN, NB-IoT, LTE Cat 1 bis, 4G and Wi-Fi on power, coverage and cost, and decided what goes over HTTP and what goes over MQTT.'],
+        ['Architecture & API', 'Django + DRF back-end with a REST API, session and integration-key auth, roles and per-tenant scoping.'],
+        ['Adapters & decoders', 'One Python connector per vendor: JSON, HEX and SenML become normalized metrics, with unit and scale configurable without a deploy.'],
+        ['Brokers & bridges', 'Own Mosquitto broker, TLS bridges to partner brokers, HTTP polling of external APIs and batched HTTP push.'],
+        ['Provisioning', 'Device onboarding with per-device MQTT credentials and ready-made AT commands to configure the hardware in the field.'],
+        ['Multichannel alerts', 'Per-type and per-device thresholds, offline detection and cooldown. WhatsApp and e-mail in production, with a decoupled channel layer for SMS and in-app push — none of it blocks ingestion.'],
+        ['Multi-tenant, custom front-ends', 'Same back-end, different front-ends: a city map, a 3D view with water billing for residential buildings, widgets for the customer app.'],
+        ['Operations', 'Docker Compose, reverse proxy, tunnel with no open ports, automatic data retention and live RTSP cameras next to the sensors.'],
+      ],
+      archTitle: 'One channel, many vendors',
+      archLead: 'Hover a vendor to follow its data path.',
+      arch: {
+        vendors: ['Vendor A', 'Vendor B', 'Vendor C', 'Vendor D'],
+        vendorDetail: ['level, water, gas · NB-IoT', 'weather station · SenML', 'air, noise, rivers · LoRaWAN', 'street lighting · LTE Cat 1 bis'],
+        transport: ['direct MQTT', 'TLS bridge', 'gateway → HTTP polling', 'vendor cloud'],
+        core: 'Single channel',
+        coreDetail: 'connectors · normalization · history',
+        outputs: ['City map', 'Digital twin', 'Alerts', 'API / app'],
+        outputDetail: ['real time, per tenant', '3D building', 'WhatsApp · e-mail · SMS · push', 'REST · in-app widgets'],
+      },
+      decisionsTitle: 'Engineering decisions',
+      decisions: [
+        ['Calibration that respects the field', 'A technician measures the real depth once; from then on every distance reading becomes the river level in meters, with no artificial ceiling.'],
+        ['Notifications never block ingestion', 'Message queue, writer threads and a separate alert queue: a slow WhatsApp never delays the next sensor.'],
+        ['Only new readings raise alerts', 'Packets carry embedded history and sometimes arrive twice. Writes are idempotent and only unseen readings reach the alert engine.'],
+        ['Self-classifying devices', 'From the metrics it sends, a sensor gets its type, icon, ranges and rules — new families without a deploy.'],
+        ['Security & privacy by design', 'TLS, per-device credentials, MFA, encrypted personal data, immutable audit trail and automatic retention.'],
+        ['Real time without polling', 'Map and 3D views update via server-sent events; async workers hold long-lived connections and video.'],
+      ],
+      usesTitle: 'Smart city use cases',
+      uses: [
+        ['Flooding', 'river level in meters, threshold alerts'],
+        ['Water', 'per-apartment metering, billing, leaks'],
+        ['Gas', 'camera-based meter reading'],
+        ['Weather', 'rain, wind, pressure — early flood warning'],
+        ['Cold chain', 'vaccines between 2 °C and 8 °C'],
+        ['Air quality', 'carbon monoxide from traffic'],
+        ['Noise', 'dB against the legal limit'],
+        ['Lighting', 'remote street-light management over LTE'],
+      ],
+      stackTitle: 'Stack',
+    },
+    twin: {
+      kicker: 'Digital twin',
+      title: 'The building in 3D, from reading to invoice',
+      text: 'For residential buildings the same back-end got a different front-end: the towers in 3D, one point per unit colored by how recent its last reading is — the start of a digital twin of the building. Around it, the whole building operation now runs on sensor data.',
+      legend: [['ok', 'recent reading'], ['warn', 'high usage'], ['alert', 'possible leak'], ['off', 'no data']],
+      pointsTitle: 'From metering to invoice',
+      points: [
+        ['Metering', 'One pulse meter serves three units; gas read by a camera on the dial.'],
+        ['Leaks', 'Continuous flow at night becomes an alert before the bill arrives.'],
+        ['Cost sharing', 'Common expenses, gas and energy split per unit or per m².'],
+        ['Contracts', 'Leases with automatic reminders for adjustments and expiry.'],
+        ['Communication', 'Notices to residents via WhatsApp and e-mail, bulk resident import.'],
+        ['Invoicing', 'Rent + water per unit in a monthly PDF invoice.'],
+      ] as [string, string][],
+    },
+    cv: {
+      title: 'Experience',
+      jobs: [
+        {
+          org: 'Unifique',
+          role: 'IoT Product Specialist',
+          period: 'Dec 2025 — now',
+          bullets: [
+            'Conceived and built from scratch the multi-tenant IoT platform described above.',
+            'Device portfolio for cities, residential and retail: research, certification and vendor integration.',
+            'Smart city projects: flooding, weather, air quality, noise, water and lighting.',
+          ],
+        },
+        {
+          org: 'Integrai',
+          role: 'Founder · ML & AI Agents',
+          period: 'May 2023 — Dec 2025',
+          bullets: [
+            'Data pipelines, models and AI agents for dozens of customers.',
+            'Process automation with n8n and API integrations.',
+          ],
+        },
+        {
+          org: 'fuse IoT',
+          role: 'Software Developer · Industrial IoT',
+          period: 'Mar 2024 — Jul 2025',
+          bullets: [
+            'Industrial monitoring platform in production: ESP32, Node-RED, MQTT and ThingsBoard.',
+            'Firmware, dashboards and alarms for shop-floor equipment.',
+          ],
+        },
+        {
+          org: 'Brazilian Navy',
+          role: 'Electrical Technician',
+          period: '2014 — 2024',
+          bullets: [
+            'Maintenance of electrical panels and motors at the Navy Arsenal.',
+            'The foundation: understanding how equipment fails before asking it for data.',
+          ],
+        },
+      ],
+    },
+    skills: {
+      title: 'Skills by layer',
+      groups: [
+        ['Devices', ['ESP32 / C++', 'Industrial sensors', 'RS-485, 4–20 mA, pulse', 'AT commands', 'Electrical engineering']],
+        ['Networks', ['LoRaWAN', 'NB-IoT', 'NTN', 'LTE Cat 1 bis / 4G (5G)', 'MQTT (topics, QoS, TLS)', 'HTTP / REST']],
+        ['Integration', ['Python', 'JSON / HEX / SenML decoders', 'Broker bridges', 'Node-RED', 'n8n']],
+        ['Platform', ['Django + DRF', 'PostgreSQL + PgBouncer', 'Angular / React / Next.js', 'ECharts, Leaflet, three.js', 'ThingsBoard']],
+        ['Operations', ['Docker / Compose', 'Linux', 'Reverse proxy & TLS', 'RTSP cameras', 'Privacy & security']],
+        ['Data & AI', ['Data science', 'Machine learning', 'Computer vision (YOLO)', 'RAG & agents', 'AI-assisted development']],
+      ] as [string, string[]][],
+    },
+    education: {
+      title: 'Education',
+      items: ['MIT — Data Science & Machine Learning', 'DataTech Florida — AI in Action Bootcamp', 'IoT Fundamentals · Agile Management 2.0', 'Electrical Technician (ETEJK)'],
+      langTitle: 'Languages',
+      langs: ['Portuguese — native', 'English — advanced'],
+    },
+    contact: {
+      title: 'Let’s talk',
+      text: 'IoT architecture, smart cities, device integration or digital twins — reach out.',
+    },
+    footer: 'Visuals are illustrative recreations. No real customer data is shown.',
+  },
+}
+
+export type Content = (typeof content)['pt']
+
+export const stack = ['Python', 'Django + DRF', 'PostgreSQL', 'MQTT / Mosquitto', 'TLS', 'NB-IoT', 'LTE Cat 1 bis', 'Docker Compose', 'Angular', 'ECharts', 'Leaflet', 'three.js', 'RTSP']
