@@ -223,7 +223,7 @@ export default function LabApp() {
 
           <div className="space-y-4 min-w-0">
             <SplitScene x={x} s={s} />
-            <BlockDiagram x={x} s={s} diag={`${diag.label} · resíduo ${(diag.resid * 100).toFixed(1)}%`} />
+            <BlockDiagram x={x} s={s} diag={diag} />
             <div className="grid xl:grid-cols-2 gap-4">
               <Scope
                 title="Scope 1 · corrente no alicate"
