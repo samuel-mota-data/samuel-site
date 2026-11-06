@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'Lab · Samuel Mota',
   description:
-    'Gêmeos digitais de refrigeração com falhas injetadas e diagnóstico pela assinatura elétrica, e desafios de otimização do Kaggle com registro de experimentos.',
+    'Digital twins de refrigeração com falhas injetadas e diagnóstico pela assinatura elétrica, e desafios de otimização do Kaggle com registro de experimentos.',
 }
 
 type Project = { href: string | null; status: string; title: string; text: string; tags: string[] }
@@ -11,14 +11,14 @@ type Project = { href: string | null; status: string; title: string; text: strin
 const SECTIONS: { kicker: string; title: string; text: string; projects: Project[] }[] = [
   {
     kicker: 'Lab · Manutenção preditiva',
-    title: 'Gêmeos digitais de refrigeração',
+    title: 'Digital twins de refrigeração',
     text: 'Falhas físicas simuladas e injetadas, validadas contra dados reais publicados, e identificadas pela assinatura elétrica.',
     projects: [
       {
         href: '/lab/split',
         status: 'ativo',
         title: 'Split 18.000 BTU',
-        text: 'Gêmeo digital calibrado com medições reais. Falhas de condensador, filtro, capacitor e vazamento vistas só pela energia.',
+        text: 'Digital twin calibrado com medições reais. Falhas de condensador, filtro, capacitor e vazamento vistas só pela energia.',
         tags: ['R410A', 'motor PSC', 'dataset UFPB', '3D'],
       },
       {

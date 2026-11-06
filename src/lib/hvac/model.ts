@@ -1,5 +1,5 @@
 /**
- * Gêmeo digital de um split (R410A, compressor rotativo, motor PSC com capacitor de partida permanente).
+ * Digital twin de um split (R410A, compressor rotativo, motor PSC com capacitor de partida permanente).
  *
  * Modelo quase-estático:
  *   - Saturação R410A por Clausius-Clapeyron ajustada (0–50 °C, erro < 2%).

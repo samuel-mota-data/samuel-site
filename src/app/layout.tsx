@@ -10,10 +10,10 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://samuel.simia.digital'),
   title: 'Samuel Mota — IoT Engineer · Smart City · Digital Twin',
   description:
-    'Sistemas IoT de ponta a ponta: dispositivos, redes NB-IoT/LTE, MQTT, integração de fabricantes em Python, plataforma Django, alertas e gêmeo digital. 12 anos do painel elétrico ao produto.',
+    'Sistemas IoT de ponta a ponta: dispositivos, redes NB-IoT/LTE, MQTT, integração de fabricantes em Python, plataforma Django, alertas e digital twin. 12 anos do painel elétrico ao produto.',
   openGraph: {
     title: 'Samuel Mota — IoT Engineer · Smart City · Digital Twin',
-    description: 'Do sensor no campo ao gêmeo digital.',
+    description: 'Do sensor no campo ao digital twin.',
     images: ['/samuel.png'],
   },
 }

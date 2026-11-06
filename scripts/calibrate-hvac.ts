@@ -1,5 +1,5 @@
 /**
- * Calibração do gêmeo digital com os dados elétricos da UFPB.
+ * Calibração do digital twin com os dados elétricos da UFPB.
  * Rodar: node scripts/calibrate-hvac.ts
  *
  * Ajusta 3 parâmetros só com as falhas SIMPLES (FL, CI30, CI60, CD30) e usa as

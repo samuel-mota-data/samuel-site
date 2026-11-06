@@ -1,10 +1,10 @@
 /**
- * Gêmeo digital dinâmico de uma câmara fria de resfriados (R404A, unidade condensadora,
+ * Digital twin dinâmico de uma câmara fria de resfriados (R404A, unidade condensadora,
  * válvula de expansão termostática, degelo elétrico). Passo de 1 minuto, dias simulados.
  *
  * Física simplificada mas fechada em energia:
  *   - Caixa: C·dT/dt = paredes + porta (sensível) + produto + ventilador + vazamento do degelo − Q_evap
- *   - Ciclo quase-estático a cada minuto ligado (Te, Tc por balanço, como no gêmeo do split)
+ *   - Ciclo quase-estático a cada minuto ligado (Te, Tc por balanço, como no digital twin do split)
  *   - Gelo: umidade que entra pela porta e pelo produto vira gelo na serpentina abaixo de 0 °C;
  *     reduz o UA do evaporador. Degelo derrete com a resistência; termina por temperatura ou tempo.
  *   - Vazamento: o reservatório segura até `KNEE`; abaixo disso falta líquido na válvula.
@@ -189,7 +189,7 @@ export function simulate(p: CRParams, keepMinutes = false): Run {
   const rnd = rng(p.seed)
   const noise = rng(p.seed + 101)
 
-  // Clima e portas: dependem só da semente (o gêmeo saudável vê o mesmo dia)
+  // Clima e portas: dependem só da semente (o digital twin saudável vê o mesmo dia)
   const dayOff: number[] = []
   const dayRh: number[] = []
   const doorAt = new Uint8Array(N)

@@ -2,8 +2,8 @@ import { HEALTHY, simulate, type CRParams, type Run } from './model'
 
 /**
  * Momento ótimo de recarga num vazamento lento que não compensa consertar.
- * Curva de penalidade de energia × carga vem do gêmeo (vazamento de referência de 1 %/dia
- * contra o gêmeo saudável, mesmo clima). Para cada carga de recarga r:
+ * Curva de penalidade de energia × carga vem do digital twin (vazamento de referência de 1 %/dia
+ * contra o digital twin saudável, mesmo clima). Para cada carga de recarga r:
  *   intervalo T = (1 − r) / vazamento
  *   custo/dia = (visita + gás reposto + energia extra no intervalo + emergência se passar do alarme) / T
  */

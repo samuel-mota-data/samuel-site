@@ -6,10 +6,10 @@ export type Lang = 'pt' | 'en'
 
 export const content = {
   pt: {
-    nav: { case: 'Caso', twin: 'Gêmeo digital', cv: 'Experiência', skills: 'Competências', contact: 'Contato' },
+    nav: { case: 'Caso', twin: 'Digital twin', cv: 'Experiência', skills: 'Competências', contact: 'Contato' },
     hero: {
       kicker: 'IoT Engineer · Smart City · Digital Twin',
-      title: ['Do sensor no campo', 'ao gêmeo digital.'],
+      title: ['Do sensor no campo', 'ao digital twin.'],
       lead: 'Projeto e construo sistemas IoT de ponta a ponta: escolha de rede, protocolo e dispositivo, integração de fabricantes, plataforma, alertas e a visualização que vira decisão.',
       path: ['elétrica', 'firmware', 'redes', 'dados', 'plataforma', 'produto'],
       ctaCase: 'Ver o caso',
@@ -33,7 +33,7 @@ export const content = {
     case: {
       kicker: 'Caso principal',
       title: 'Plataforma IoT multi-tenant, do zero',
-      lead: 'Concebi, arquitetei e construí sozinho uma plataforma que recebe telemetria de vários fabricantes por um único canal, padroniza tudo e entrega mapa, gráficos, alertas e gêmeo digital para diferentes clientes sobre o mesmo back-end.',
+      lead: 'Concebi, arquitetei e construí sozinho uma plataforma que recebe telemetria de vários fabricantes por um único canal, padroniza tudo e entrega mapa, gráficos, alertas e digital twin para diferentes clientes sobre o mesmo back-end.',
       confidential: 'Projeto corporativo. Marcas, clientes, dados e telas reais foram omitidos por confidencialidade. As visualizações desta página são recriações.',
       roleTitle: 'O que eu fiz',
       role: [
@@ -54,7 +54,7 @@ export const content = {
         transport: ['MQTT direto', 'bridge TLS', 'gateway → polling HTTP', 'nuvem do fabricante'],
         core: 'Canal único',
         coreDetail: 'conectores · padronização · histórico',
-        outputs: ['Mapa da cidade', 'Gêmeo digital', 'Alertas', 'API / app'],
+        outputs: ['Mapa da cidade', 'Digital twin', 'Alertas', 'API / app'],
         outputDetail: ['tempo real, por cliente', '3D do prédio', 'WhatsApp · e-mail · SMS · push', 'REST · widgets no app'],
       },
       decisionsTitle: 'Decisões de engenharia',
@@ -80,9 +80,9 @@ export const content = {
       stackTitle: 'Stack',
     },
     twin: {
-      kicker: 'Gêmeo digital',
+      kicker: 'Digital twin',
       title: 'O condomínio em 3D, da leitura à fatura',
-      text: 'Para condomínios o mesmo back-end ganhou outro front-end: as torres em 3D, um ponto por unidade colorido pela recência da última leitura — o começo de um gêmeo digital do prédio. Em volta dele, a operação inteira do condomínio passou a rodar sobre os dados dos sensores.',
+      text: 'Para condomínios o mesmo back-end ganhou outro front-end: as torres em 3D, um ponto por unidade colorido pela recência da última leitura — o começo de um digital twin do prédio. Em volta dele, a operação inteira do condomínio passou a rodar sobre os dados dos sensores.',
       legend: [['ok', 'leitura recente'], ['warn', 'consumo alto'], ['alert', 'possível vazamento'], ['off', 'sem dado']],
       pointsTitle: 'Da medição à fatura',
       points: [
@@ -155,7 +155,7 @@ export const content = {
     },
     contact: {
       title: 'Vamos conversar',
-      text: 'Arquitetura IoT, cidade inteligente, integração de dispositivos ou gêmeo digital — me chama.',
+      text: 'Arquitetura IoT, cidade inteligente, integração de dispositivos ou digital twin — me chama.',
     },
     footer: 'Visualizações são recriações ilustrativas. Nenhum dado real de cliente é exibido.',
   },

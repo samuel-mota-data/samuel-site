@@ -3,7 +3,7 @@ import type { Inputs, State } from '@/lib/hvac/model'
 
 /**
  * Diagrama de blocos no estilo Simulink, em dois subsistemas:
- * ELÉTRICA (o que o sensor mede) e CICLO FRIGORÍFICO (o que o gêmeo simula).
+ * ELÉTRICA (o que o sensor mede) e CICLO FRIGORÍFICO (o que o digital twin simula).
  */
 
 type B = {
@@ -127,7 +127,7 @@ export default function BlockDiagram({ x, s, diag }: { x: Inputs; s: State; diag
         </defs>
 
         <Frame x={10} y={10} w={400} h={282} title="ELÉTRICA" sub="o que o sensor mede" />
-        <Frame x={428} y={10} w={462} h={282} title="CICLO FRIGORÍFICO" sub="o que o gêmeo simula" />
+        <Frame x={428} y={10} w={462} h={282} title="CICLO FRIGORÍFICO" sub="o que o digital twin simula" />
 
         {/* elétrica */}
         <Wire d={`M135,${mid1} H150`} />

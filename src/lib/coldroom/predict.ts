@@ -1,7 +1,7 @@
 import type { Daily, Run } from './model'
 
 /**
- * Camada preditiva: compara cada dia com o GÊMEO SAUDÁVEL (mesmo clima, mesmas portas, sem falha).
+ * Camada preditiva: compara cada dia com o DIGITAL TWIN SAUDÁVEL (mesmo clima, mesmas portas, sem falha).
  * Um alerta sai quando o desvio persiste 2 dias seguidos. Cada família de alerta aponta para os
  * alarmes do controlador que ela antecipa.
  */
@@ -28,7 +28,7 @@ export const FAMILIES: Family[] = [
   },
   {
     id: 'txv',
-    name: 'Superaquecimento acima do gêmeo',
+    name: 'Superaquecimento acima do digital twin',
     sensor: 'P baixa + T sucção',
     alarms: ['ASHH', 'A1'],
     test: (d, t) => d.sh - t.sh >= 4 && t.sc - d.sc < 2,

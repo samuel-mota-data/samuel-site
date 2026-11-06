@@ -107,7 +107,7 @@ export default function Page() {
             </div>
           </div>
 
-          {/* Gêmeo digital (recriação) */}
+          {/* Digital twin (recriação) */}
           <div className="relative h-[360px] sm:h-[460px] lg:h-[540px] -mx-4 sm:mx-0">
             <TwinBuilding onEvent={onEvent} className="absolute inset-0" />
 
@@ -220,7 +220,7 @@ export default function Page() {
         </div>
       </section>
 
-      {/* Gêmeo digital */}
+      {/* Digital twin */}
       <section id="twin" className="max-w-6xl mx-auto px-4 sm:px-8 pb-28 scroll-mt-20">
         <div className="grid lg:grid-cols-[1fr_380px] gap-10 items-start">
           <div>

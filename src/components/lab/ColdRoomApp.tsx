@@ -86,7 +86,7 @@ function Timeline({ findings, days, onPick }: { findings: ReturnType<typeof pred
   const sx = (d: number) => L + (d / days) * (W - L - 20)
   const H = Math.max(1, rows.length) * 44 + 34
   if (!rows.length)
-    return <div className="rounded-xl border border-white/10 bg-panel p-6 text-sm text-white/60">Nenhum desvio do gêmeo e nenhum alarme em {days} dias. Equipamento saudável.</div>
+    return <div className="rounded-xl border border-white/10 bg-panel p-6 text-sm text-white/60">Nenhum desvio do digital twin e nenhum alarme em {days} dias. Equipamento saudável.</div>
   return (
     <div className="rounded-xl border border-white/10 bg-black overflow-x-auto">
       <svg viewBox={`0 0 ${W} ${H}`} className="w-full min-w-[560px] h-auto block" role="img" aria-label="Linha do tempo: alerta preditivo e alarme do controlador">
@@ -130,7 +130,7 @@ function Timeline({ findings, days, onPick }: { findings: ReturnType<typeof pred
         })}
       </svg>
       <div className="flex flex-wrap gap-4 px-3 py-2 border-t border-white/10 font-mono text-[11px] text-white/60">
-        <span className="flex items-center gap-1.5"><i className="w-2.5 h-2.5 rounded-full bg-green-400 inline-block" />alerta preditivo (desvio do gêmeo)</span>
+        <span className="flex items-center gap-1.5"><i className="w-2.5 h-2.5 rounded-full bg-green-400 inline-block" />alerta preditivo (desvio do digital twin)</span>
         <span className="flex items-center gap-1.5"><i className="w-2.5 h-2.5 rotate-45 bg-red-400 inline-block" />alarme do controlador (manuais)</span>
         <span className="ml-auto">clique para ir ao dia</span>
       </div>
@@ -245,7 +245,7 @@ export default function ColdRoomApp() {
           <h1 className="font-display text-3xl sm:text-5xl font-bold tracking-tight leading-[1.05]">Câmara fria: avisar antes do alarme</h1>
           <p className="mt-4 text-white/60 text-base sm:text-lg">
             60 dias simulados minuto a minuto. O controlador dispara os alarmes dos manuais (Danfoss, Full Gauge, Carel); a predição
-            compara cada dia com um gêmeo saudável e avisa antes. Mais degelo por demanda e o momento ótimo de recarga de gás.
+            compara cada dia com um digital twin saudável e avisa antes. Mais degelo por demanda e o momento ótimo de recarga de gás.
           </p>
         </header>
 
@@ -378,7 +378,7 @@ export default function ColdRoomApp() {
             <Kicker>Alarme × predição</Kicker>
             <h2 className="font-display text-2xl sm:text-4xl font-bold tracking-tight">Quantos dias antes dá para saber</h2>
             <p className="mt-3 text-white/60 text-sm">
-              O alarme olha o valor de agora contra um limite fixo. A predição olha a tendência contra o gêmeo saudável, com o mesmo clima e
+              O alarme olha o valor de agora contra um limite fixo. A predição olha a tendência contra o digital twin saudável, com o mesmo clima e
               as mesmas aberturas de porta, e só avisa quando o desvio dura 2 dias seguidos.
             </p>
           </div>
@@ -387,7 +387,7 @@ export default function ColdRoomApp() {
             {[
               ['Alarmes do controlador', `${new Set(run.alarms.map(a => a.code)).size} tipo(s) · ${run.alarms.length} episódio(s)`, run.alarms.length ? RED : GREEN],
               ['Primeiro alerta preditivo', firstAlerts.length ? `dia ${Math.min(...firstAlerts.map(f => f.alertDay!))}` : '—', GREEN],
-              ['Energia a mais que o gêmeo', `${(kwhRun - kwhTwin).toFixed(0)} kWh`, kwhRun - kwhTwin > 20 ? RED : YELLOW],
+              ['Energia a mais que o digital twin', `${(kwhRun - kwhTwin).toFixed(0)} kWh`, kwhRun - kwhTwin > 20 ? RED : YELLOW],
               ['Custo da falha no período', `R$ ${Math.max(0, (kwhRun - kwhTwin) * econ.tariff).toFixed(0)}`, YELLOW],
             ].map(([k, v, c]) => (
               <div key={k} className="rounded-xl border border-white/10 bg-panel px-4 py-3">
@@ -402,7 +402,7 @@ export default function ColdRoomApp() {
               xLabel="dia"
               xRange={[0, days]}
               series={[
-                { y: twin.daily.map(d => d.sc), x: dayIdx, color: GRAY, label: 'SC gêmeo', dash: '3 3' },
+                { y: twin.daily.map(d => d.sc), x: dayIdx, color: GRAY, label: 'SC digital twin', dash: '3 3' },
                 { y: run.daily.map(d => d.sc), x: dayIdx, color: CYAN, label: 'SC [K]' },
                 { y: run.daily.map(d => d.sh), x: dayIdx, color: RED, label: 'SH [K]' },
               ]}
@@ -413,7 +413,7 @@ export default function ColdRoomApp() {
               xLabel="dia"
               xRange={[0, days]}
               series={[
-                { y: twin.daily.map(d => d.kwhComp + d.kwhDef + d.kwhFan), x: dayIdx, color: GRAY, label: 'gêmeo', dash: '3 3' },
+                { y: twin.daily.map(d => d.kwhComp + d.kwhDef + d.kwhFan), x: dayIdx, color: GRAY, label: 'digital twin', dash: '3 3' },
                 { y: run.daily.map(d => d.kwhComp + d.kwhDef + d.kwhFan), x: dayIdx, color: YELLOW, label: 'total [kWh]' },
                 { y: run.daily.map(d => d.kwhDef), x: dayIdx, color: RED, label: 'degelo' },
               ]}
@@ -424,7 +424,7 @@ export default function ColdRoomApp() {
               xLabel="dia"
               xRange={[0, days]}
               series={[
-                { y: twin.daily.map(d => d.defDur), x: dayIdx, color: GRAY, label: 'gêmeo', dash: '3 3' },
+                { y: twin.daily.map(d => d.defDur), x: dayIdx, color: GRAY, label: 'digital twin', dash: '3 3' },
                 { y: run.daily.map(d => d.defDur), x: dayIdx, color: RED, label: 'degelo [min]' },
               ]}
               hLines={[{ y: LIM.d04, color: RED, label: `d04 = ${LIM.d04} min (termina por tempo)` }]}
@@ -435,7 +435,7 @@ export default function ColdRoomApp() {
               xLabel="dia"
               xRange={[0, days]}
               series={[
-                { y: twin.daily.map(d => d.approach), x: dayIdx, color: GRAY, label: 'gêmeo', dash: '3 3' },
+                { y: twin.daily.map(d => d.approach), x: dayIdx, color: GRAY, label: 'digital twin', dash: '3 3' },
                 { y: run.daily.map(d => d.approach), x: dayIdx, color: '#fb923c', label: 'Tc − Text [K]' },
                 { y: run.daily.map(d => d.duty * 100 / 4), x: dayIdx, color: GREEN, label: 'duty ÷ 4 [%]' },
               ]}
@@ -556,7 +556,7 @@ export default function ColdRoomApp() {
             {[
               ['Física', 'R404A, unidade condensadora, válvula termostática, degelo elétrico. Balanço de energia da caixa, gelo pela umidade da porta e do produto, passo de 1 minuto.'],
               ['Alarmes', 'Limites e atrasos típicos dos manuais públicos: temperatura alta (A1), degelo por tempo (d04), superaquecimento alto e baixo, pressostatos, descarga.'],
-              ['Predição', 'Gêmeo saudável com o mesmo clima e as mesmas portas como referência; desvio persistente de 2 dias vira alerta. Sensores do degrau 0–2 da escada.'],
+              ['Predição', 'Digital twin saudável com o mesmo clima e as mesmas portas como referência; desvio persistente de 2 dias vira alerta. Sensores do degrau 0–2 da escada.'],
               ['Limites', 'Modelo didático, não calibrado em câmara real. O joelho do reservatório (72 % de carga) e as taxas de gelo são premissas a ajustar com dados de campo.'],
             ].map(([k, v]) => (
               <div key={k} className="rounded-xl border border-white/10 bg-panel p-4">
